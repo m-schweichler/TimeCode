@@ -1,16 +1,16 @@
 TimeCode
 ========
 
-Script converts subtitles timecode format 
-from:
-mm:ss:ff Subtitle text
-mm:ss:ff Subtitle text 2 
+Script converts subtitles timecode format<br><br>
+from:<br>
+mm:ss:ff Subtitle text<br>
+mm:ss:ff Subtitle text 2<br>
 
-to: 
-hh:mm:ss:ff hh:mm:ss:ff
-Subtitle text
+to:<br>
+hh:mm:ss:ff hh:mm:ss:ff<br>
+Subtitle text<br>
 
-hh:mm:ss:ff hh:mm:ss:ff
-Subtitle text 2
+hh:mm:ss:ff hh:mm:ss:ff<br>
+Subtitle text 2<br>
 
 and adds header and footer as needed in DS Subtitles file
