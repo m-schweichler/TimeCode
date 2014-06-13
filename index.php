@@ -112,7 +112,13 @@ if (!empty($_POST['input'])) {
             $newText = $text;
 
             if (count($output) == 0) {
-                $output[0]['start'] = '00:00:00:00';
+                $output[0]['start'] = ($newS - 5 <= 0) ? '00:00:00:00' : sprintf(
+                    '%1$02d:%2$02d:%3$02d:%4$02d',
+                    $newH,
+                    $newM,
+                    ($newS - 5),
+                    $newF
+                );
                 $output[0]['end'] = sprintf('%1$02d:%2$02d:%3$02d:%4$02d', $newH, $newM, $newS, $newF);
                 $output[0]['text'] = $newText;
             } else {
@@ -139,45 +145,49 @@ $outputLines[] = $fileFooter;
 if (!empty($_POST['input'])) {
     echo
         '<form action="" method="post">' .
-            '<h3>Input:</h3>' .
-            '<textarea name="input" id="input" cols="50" rows="20">' . $_POST['input'] . '</textarea>' .
-            '<input type="submit" id="convert" value="convert ->" />' .
+        '<h3>Input:</h3>' .
+        '<textarea name="input" id="input" cols="50" rows="20">' . $_POST['input'] . '</textarea>' .
+        '<input type="submit" id="convert" value="convert ->" />' .
         '</form>';
 
     echo
         '<div id="wrapper">' .
-            '<h3>Output:</h3>' .
-            '<textarea id="test">';
+        '<h3>Output:</h3>' .
+        '<textarea id="test">';
 
     foreach ($outputLines as $item) {
-        echo str_replace('<br>', '&#13;&#10;', $item); // change br to \r\n /firstly output was echo'ed in div, now it's in textarea/
+        echo str_replace(
+            '<br>',
+            '&#13;&#10;',
+            $item
+        ); // change br to \r\n /firstly output was echo'ed in div, now it's in textarea/
     }
 
     echo
-            '</textarea>' .
+        '</textarea>' .
         '</div>';
 
 } else {
     echo
         '<form action="" method="post">' .
-            '<h3>Input:</h3>' .
-            '<textarea name="input" id="input" cols="50" rows="20">' .
-                '0:10:00 First subtitle bla bla bla' . '&#13;&#10;' .
-                '0:20:00 Second subtitle bla bla bla' . '&#13;&#10;' .
-                '0:33:00 Third subtitle bla bla bla' . '&#13;&#10;' .
-                '1:10:00 First subtitle bla bla bla' . '&#13;&#10;' .
-                '20:20:00 Fourth subtitle bla bla bla' . '&#13;&#10;' .
-                '61:13:00 Sixth subtitle bla bla bla' . '&#13;&#10;' .
-                '78:33:00 Seventh subtitle bla bla bla' . '&#13;&#10;' .
-            '</textarea>' .
-            '<input type="submit" id="convert" value="convert ->" />' .
+        '<h3>Input:</h3>' .
+        '<textarea name="input" id="input" cols="50" rows="20">' .
+        '0:10:00 First subtitle bla bla bla' . '&#13;&#10;' .
+        '0:20:00 Second subtitle bla bla bla' . '&#13;&#10;' .
+        '0:33:00 Third subtitle bla bla bla' . '&#13;&#10;' .
+        '1:10:00 First subtitle bla bla bla' . '&#13;&#10;' .
+        '20:20:00 Fourth subtitle bla bla bla' . '&#13;&#10;' .
+        '61:13:00 Sixth subtitle bla bla bla' . '&#13;&#10;' .
+        '78:33:00 Seventh subtitle bla bla bla' . '&#13;&#10;' .
+        '</textarea>' .
+        '<input type="submit" id="convert" value="convert ->" />' .
         '</form>';
 
     echo
         '<div id="wrapper">' .
-            '<h3>Output:</h3>' .
-            '<textarea id="test">' .
-            '</textarea>' .
+        '<h3>Output:</h3>' .
+        '<textarea id="test">' .
+        '</textarea>' .
         '</div>';
 }
 ?>

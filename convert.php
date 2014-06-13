@@ -22,30 +22,34 @@ $output = array();
 if ($input = file($inputFile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES)) {
     foreach ($input as $line) {
         preg_match('/([0-9]*):([0-9]*):([0-9]*) (.*)/', $line, $match);
-        $m = $match[1];
-        $s = $match[2];
-        $f = $match[3];
-        $text = $match[4];
+        if ($match) {
+            $m = $match[1];
+            $s = $match[2];
+            $f = $match[3];
+            $text = $match[4];
 
-        $newH = floor($m / 60);
-        $newM = $m % 60;
-        $newS = $s;
-        $newF = $f;
-        $newText = $text;
+            $newH = floor($m / 60);
+            $newM = $m % 60;
+            $newS = $s;
+            $newF = $f;
+            $newText = $text;
 
-        if (count($output) == 0) {
-            if ($newS - 5 <= 0) {
-                $output[0]['start'] = '00:00:00:00';
+            if (count($output) == 0) {
+                $output[0]['start'] = ($newS - 5 <= 0) ? '00:00:00:00' : sprintf(
+                    '%1$02d:%2$02d:%3$02d:%4$02d',
+                    $newH,
+                    $newM,
+                    ($newS - 5),
+                    $newF
+                );
+                $output[0]['end'] = sprintf('%1$02d:%2$02d:%3$02d:%4$02d', $newH, $newM, $newS, $newF);
+                $output[0]['text'] = $newText;
             } else {
-                $output[0]['start'] = sprintf('%1$02d:%2$02d:%3$02d:%4$02d', $newH, $newM, ($newS - 5), $newF);
+                $length = count($output);
+                $output[$length]['start'] = $output[$length - 1]['end'];
+                $output[$length]['end'] = sprintf('%1$02d:%2$02d:%3$02d:%4$02d', $newH, $newM, $newS, $newF);
+                $output[$length]['text'] = $newText;
             }
-            $output[0]['end'] = sprintf('%1$02d:%2$02d:%3$02d:%4$02d', $newH, $newM, $newS, $newF);
-            $output[0]['text'] = $newText;
-        } else {
-            $length = count($output);
-            $output[$length]['start'] = $output[$length - 1]['end'];
-            $output[$length]['end'] = sprintf('%1$02d:%2$02d:%3$02d:%4$02d', $newH, $newM, $newS, $newF);
-            $output[$length]['text'] = $newText;
         }
     }
 } else {
