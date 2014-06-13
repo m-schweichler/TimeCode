@@ -6,6 +6,10 @@
  *
  * Date: 13/06/14
  * Time: 15:00
+ *
+ *
+ * Usage:
+ * php convert.php path_to_input.txt path_to_output.txt
  */
 error_reporting(0);
 set_time_limit(3600);
