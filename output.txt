@@ -1,0 +1,58 @@
+@ This is a DS Subtitles file
+@ Creator: Belle Nuit Subtitler 1.7.8
+@ Date: 23.07.2011
+
+@ Header
+
+<font> Arial
+<font size> 36
+<kerning> 1
+<leading> 2
+<alignment> center
+
+<use face> on
+<face color> 92 92 92
+<face opacity> 100
+<face softness> 0
+
+<use edge> on
+<edge color> 6 6 6
+<face opacity> 1
+<edge opacity> 1
+<edge softness> 60
+<edge width> 3
+
+<use shadow> on
+<shadow color> 50 50 50
+<shadow opacity> 100
+<shadow softness> 40
+<shadow offset> 3
+<shadow angle> 45
+
+
+@ Subtitles
+
+<begin subtitles>
+
+00:00:05:00 00:00:10:00
+First subtitle bla bla bla
+
+00:00:10:00 00:00:20:00
+Second subtitle bla bla bla
+
+00:00:20:00 00:00:33:00
+Third subtitle bla bla bla
+
+00:00:33:00 00:01:10:00
+Fourth subtitle bla bla bla
+
+00:01:10:00 00:20:20:00
+Fifth subtitle bla bla bla
+
+00:20:20:00 01:01:13:00
+Sixth subtitle bla bla bla
+
+01:01:13:00 01:18:33:00
+Seventh subtitle bla bla bla
+
+<end subtitles>
